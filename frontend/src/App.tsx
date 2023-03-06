@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
+import modifySave from './services/modify-save'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  modifySave();
 
   return (
     <div className="App">

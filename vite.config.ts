@@ -9,5 +9,9 @@ export default defineConfig({
   base: '/backend/server/public',
   build: {
     outDir: '../backend/server/public'
-  }
+  },
+  assetsInclude: [
+    '**/*.xml',
+    '**/*.rws'
+  ]
 })
