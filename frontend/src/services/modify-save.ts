@@ -9,6 +9,6 @@ export default async function modifySave() {
   const defaults = await createXMLDOC(sampleDefaults);
   const schedule = defaults.getElementsByTagName('schedule')[0];
   replaceXMLChildren(saveFile, schedule);
-  console.log(saveFile.getElementsByTagName('schedule')[0].innerHTML)
-  createRWSFile(saveFile);
+  console.log(saveFile.getElementsByTagName('schedule')[2].innerHTML)
+  // createRWSFile(saveFile);
 }

@@ -4,7 +4,7 @@ export default function replaceXMLChildren(
 ) {
   const elementName = replacement.tagName;
   const elements = doc.getElementsByTagName(elementName);
-  for (let element of elements) {
+  for (const element of elements) {
     element.replaceChildren(...replacement.children);
   }
 }
