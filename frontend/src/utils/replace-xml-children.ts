@@ -5,6 +5,7 @@ export default function replaceXMLChildren(
   const elementName = replacement.tagName;
   const elements = doc.getElementsByTagName(elementName);
   for (const element of elements) {
-    element.replaceChildren(...replacement.children);
+    const replacementCopy = replacement.cloneNode(true).childNodes;
+    element.replaceChildren(...replacementCopy);
   }
 }

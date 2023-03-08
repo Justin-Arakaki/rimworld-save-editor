@@ -7,7 +7,7 @@
     "dev": "npm-run-all --silent --parallel dev:*",
     "dev:client": "vite",
     "dev:server": "nodemon",
-    "dev:test": "jest --watch",
+    "test": "jest --watch",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "husky install"
@@ -26,6 +26,9 @@
     "@babel/plugin-transform-modules-commonjs": "^7.21.2",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.21.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/express": "^4.17.14",
     "@types/file-saver": "^2.0.5",
     "@types/jest": "^29.4.0",
