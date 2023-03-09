@@ -50,6 +50,10 @@
     "vite": "^3.1.0"
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": [
+      "/__helpers__/",
+      "/__constants__/"
+    ]
   }
 }
