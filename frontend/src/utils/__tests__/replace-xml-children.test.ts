@@ -3,7 +3,7 @@ import {
   createTestDefaults1,
   createTestSave,
   createTestResult1
-} from "../../data/test-constants/mockXML";
+} from "../../data/test-utils/create-test-xml";
 
 test('Replaces all elements with replacement element', () => {
   const testSave = createTestSave();

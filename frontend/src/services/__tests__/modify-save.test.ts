@@ -3,9 +3,9 @@ import {
   createTestSave,
   createTestDefaults2,
   createTestResult2
-} from "../../data/test-constants/mockXML";
+} from "../../data/test-utils/create-test-xml";
 
-test('Patches save file with defaults', async () => {
+test('Patches save file with defaults', () => {
   const testSave = createTestSave();
   const testDefaults = createTestDefaults2();
   const testResult = createTestResult2();
