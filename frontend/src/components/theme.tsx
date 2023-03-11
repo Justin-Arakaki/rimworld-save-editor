@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
 const customTheme = createTheme({
   breakpoints: {
@@ -7,57 +7,57 @@ const customTheme = createTheme({
       sm: 500,
       md: 900,
       lg: 1200,
-      xl: 1536
-    }
+      xl: 1536,
+    },
   },
   palette: {
     primary: {
-      main: '#ab61d5'
+      main: "#ab61d5",
     },
     secondary: {
-      main: '#76e0e6'
+      main: "#76e0e6",
     },
     text: {
-      primary: '#d9dbe7',
-      secondary: '#6b6d7f'
+      primary: "#d9dbe7",
+      secondary: "#6b6d7f",
     },
     background: {
-      paper: '#282a3c',
-      default: '#1b1c27'
-    }
+      paper: "#282a3c",
+      default: "#1b1c27",
+    },
   },
   typography: {
-    fontFamily: 'Lato',
+    fontFamily: "Lato",
     button: {
       fontWeight: 400,
-      fontSize: '1.125rem',
-      textTransform: 'none'
+      fontSize: "1.125rem",
+      textTransform: "none",
     },
     h1: {
       fontWeight: 500,
-      fontSize: '3.125rem'
+      fontSize: "3.125rem",
     },
     h2: {
-      fontWeight: 'bolder',
-      fontSize: '1.625rem'
+      fontWeight: "bolder",
+      fontSize: "1.625rem",
     },
     h3: {
       fontWeight: 400,
-      fontSize: '1.175rem'
+      fontSize: "1.175rem",
     },
     h4: {
       fontWeight: 400,
-      fontSize: '1.175rem'
+      fontSize: "1.175rem",
     },
     body1: {
       fontWeight: 400,
-      fontSize: '1rem'
+      fontSize: "1rem",
     },
     body2: {
       fontWeight: 400,
-      fontSize: '1rem'
-    }
-  }
+      fontSize: "1rem",
+    },
+  },
 });
 
 export default customTheme;
