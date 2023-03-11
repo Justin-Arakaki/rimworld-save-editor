@@ -12,6 +12,7 @@ const FileButton = styled(Button)<
   },
   [theme.breakpoints.up("sm")]: {
     width: "40%",
+    height: "30%",
   },
 }));
 

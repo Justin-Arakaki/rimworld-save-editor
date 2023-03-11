@@ -1,4 +1,4 @@
-import convertStringToDoc from "../../utils/convert-string-to-doc";
+import convertStringToDoc from '../../utils/convert-string-to-doc';
 
 const testSaveStr = `
   <savegame>

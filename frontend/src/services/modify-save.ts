@@ -1,12 +1,12 @@
-import replaceXMLChildren from "../utils/replace-xml-children";
+import replaceXMLChildren from '../utils/replace-xml-children';
 
 export default function modifySave(
-  saveFile: XMLDocument,
-  defaults: XMLDocument
+	saveFile: XMLDocument,
+	defaults: XMLDocument
 ): void {
-  const defaultEls = defaults.documentElement.children;
+	const defaultEls = defaults.documentElement.children;
 
-  for (const el of defaultEls) {
-    replaceXMLChildren(saveFile, el);
-  }
+	for (const el of defaultEls) {
+		replaceXMLChildren(saveFile, el);
+	}
 }
