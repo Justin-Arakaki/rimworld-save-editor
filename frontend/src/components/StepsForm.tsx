@@ -10,7 +10,7 @@ export default function StepsForm() {
 	const [isLoadingNewSave, setIsLoadingNewSave] = useState(true);
 	const [saveFile, setSaveFile] = useState<File | null>(null);
 	const [defaultsFile, setDefaultsFile] = useState<File | null>(null);
-	const [newSaveDoc, setNewSaveDoc] = useState<Document | null>(null);
+	const [newSaveDoc, setNewSaveDoc] = useState<XMLDocument | null>(null);
 	const [saveDoc, setSaveDoc] = useState<Document | null>(null);
 	const [defaultsDoc, setDefaultsDoc] = useState<Document | null>(null);
 
@@ -21,7 +21,7 @@ export default function StepsForm() {
 		setIsLoadingNewSave(true);
 		modifySave(saveDoc, defaultsDoc);
 		setNewSaveDoc(saveDoc);
-		createRWSFile(saveDoc);
+		createRWSFile(newSaveDoc);
 		setIsLoadingNewSave(false);
 	};
 
@@ -56,7 +56,16 @@ export default function StepsForm() {
 		async function setDoc() {
 			if (!saveFile) return;
 			setIsLoadingNewSave(true);
-			setSaveDoc(await convertFileToDoc(saveFile));
+			const doc = await convertFileToDoc(saveFile);
+			setSaveDoc(doc);
+			console.log('here' + typeof saveDoc);
+			// if (!saveDoc) {
+			// 	console.log('saveDoc is ' + typeof saveDoc);
+			// 	return;
+			// }
+			const serializer = new XMLSerializer();
+			const xmlString = serializer.serializeToString(saveDoc);
+			console.log(xmlString);
 			setIsLoadingSave(false);
 		}
 		setDoc();
