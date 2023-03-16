@@ -1,69 +1,90 @@
-import { useState } from 'react';
-import Typography from '@mui/material/Typography';
+import { useState, useMemo, useEffect } from 'react';
 import Stack from '@mui/material/Stack';
-import Card from '@mui/material/Card';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import FileButton from './FileButton';
-
+import Step from './Step';
+import convertFileToDoc from '../utils/convert-file-to-doc';
+import modifySave from '../services/modify-save';
+import createRWSFile from '../utils/create-rws-file';
 export default function StepsForm() {
-	const [defaultsFile, setDefaultsDocFile] = useState(null);
-	const [saveFile, setSaveFile] = useState(null);
+	const [isLoadingSave, setIsLoadingSave] = useState(false);
+	const [isLoadingDefaults, setIsLoadingDefaults] = useState(false);
+	const [isLoadingNewSave, setIsLoadingNewSave] = useState(true);
+	const [saveFile, setSaveFile] = useState<File | null>(null);
+	const [defaultsFile, setDefaultsFile] = useState<File | null>(null);
+	const [newSaveDoc, setNewSaveDoc] = useState<Document | null>(null);
+	const [saveDoc, setSaveDoc] = useState<Document | null>(null);
+	const [defaultsDoc, setDefaultsDoc] = useState<Document | null>(null);
 
-	const cardProps = {
-		display: 'flex',
-		flexDirection: 'column',
-		gap: 1,
-		p: 3,
+	const handleFileDownload = function () {
+		console.log('here');
+		if (!saveDoc || !defaultsDoc) return;
+		console.log('thru');
+		setIsLoadingNewSave(true);
+		modifySave(saveDoc, defaultsDoc);
+		setNewSaveDoc(saveDoc);
+		createRWSFile(saveDoc);
+		setIsLoadingNewSave(false);
 	};
-	const buttonProps = { width: '40%' };
-	const boxProps = { mt: 4 };
+
+	const step1 = {
+		title: 'Step 1: Upload save file',
+		description:
+			'Typically found in C:\\users\\<username>\\AppData\\LocalLow\\Ludeon Studios\\RimWorld by Ludeon Studios\\Saves folder as .rws file type on Windows',
+		buttonText: 'Upload Save File',
+		onChange: setSaveFile,
+		onLoading: setIsLoadingSave,
+		isLoading: isLoadingSave,
+	};
+	const step2 = {
+		title: 'Step 2: Upload defaults file',
+		description: 'Create a defaults file and upload. See example here.',
+		buttonText: 'Upload Defaults File',
+		onChange: setDefaultsFile,
+		onLoading: setIsLoadingDefaults,
+		isLoading: isLoadingDefaults,
+	};
+	const step3 = {
+		title: 'Step 3: Download file',
+		description: 'Place save file in your saves',
+		buttonText: 'Download',
+		onChange: setNewSaveDoc,
+		onLoading: setIsLoadingNewSave,
+		isLoading: isLoadingNewSave,
+		onClick: handleFileDownload,
+	};
+
+	useEffect(() => {
+		async function setDoc() {
+			if (!saveFile) return;
+			setIsLoadingNewSave(true);
+			setSaveDoc(await convertFileToDoc(saveFile));
+			setIsLoadingSave(false);
+		}
+		setDoc();
+	}, [saveFile]);
+
+	useEffect(() => {
+		async function setDoc() {
+			if (!defaultsFile) return;
+			setIsLoadingNewSave(true);
+			setDefaultsDoc(await convertFileToDoc(defaultsFile));
+			setIsLoadingDefaults(false);
+		}
+		setDoc();
+	}, [defaultsFile]);
+
+	useEffect(() => {
+		if (!saveDoc || !defaultsDoc) return;
+		setIsLoadingNewSave(false);
+	}, [saveDoc, defaultsDoc]);
 
 	return (
 		<Stack
 			spacing={2}
-			sx={{
-				display: 'flex',
-				justifyContent: 'center',
-				mb: 2,
-			}}
+			sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}
 		>
-			<Card sx={cardProps}>
-				<Typography variant="h2">Step 1: Upload save file</Typography>
-				<Typography variant="body1">
-					Typically found in C:\users\&lt;username&gt;\AppData\LocalLow\Ludeon
-					Studios\RimWorld by Ludeon Studios\Saves folder as .rws file type on
-					Windows
-				</Typography>
-				<Box {...boxProps}>
-					<FileButton variant="contained" component="label">
-						Upload Save File
-						<input hidden accept=".xml,.rws" type="file" />
-					</FileButton>
-				</Box>
-			</Card>
-			<Card sx={cardProps}>
-				<Typography variant="h2">Step 2: Upload defaults file</Typography>
-				<Typography variant="body1">
-					Create a defaults file and upload. See example here.
-				</Typography>
-				<Box {...boxProps}>
-					<Button variant="contained" component="label" sx={buttonProps}>
-						Upload Defaults File
-						<input hidden accept=".xml,.rws" type="file" />
-					</Button>
-				</Box>
-			</Card>
-			<Card sx={cardProps}>
-				<Typography variant="h2">Step 3: Download file</Typography>
-				<Typography variant="body1">Place save file in your saves</Typography>
-				<Box {...boxProps}>
-					<Button variant="contained" component="label" sx={buttonProps}>
-						Download
-						<input hidden accept=".xml,.rws" type="file" />
-					</Button>
-				</Box>
-			</Card>
+			<Step {...step1} />
+			<Step {...step2} />
+			<Step {...step3} />
 		</Stack>
 	);
 }

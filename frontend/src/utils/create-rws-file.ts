@@ -1,6 +1,6 @@
-import FileSaver, { saveAs } from 'file-saver';
+import FileSaver from 'file-saver';
 
-export default function createRWSFile(doc: XMLDocument): void {
+export default function createRWSFile(doc: XMLDocument | Document): void {
 	const serializer = new XMLSerializer();
 	const xmlString = serializer.serializeToString(doc);
 	const blob = new Blob([xmlString], { type: 'text/xml' });
