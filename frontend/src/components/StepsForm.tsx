@@ -56,15 +56,17 @@ export default function StepsForm() {
 		async function setDoc() {
 			if (!saveFile) return;
 			setIsLoadingNewSave(true);
+			// react alskdfjlasjdklf
 			const doc = await convertFileToDoc(saveFile);
 			setSaveDoc(doc);
 			console.log('here' + typeof saveDoc);
-			// if (!saveDoc) {
-			// 	console.log('saveDoc is ' + typeof saveDoc);
-			// 	return;
-			// }
+			if (!doc) {
+				console.log('doc is ' + typeof saveDoc);
+				return;
+			}
 			const serializer = new XMLSerializer();
-			const xmlString = serializer.serializeToString(saveDoc);
+			const root = doc.getRootNode();
+			const xmlString = serializer.serializeToString(root);
 			console.log(xmlString);
 			setIsLoadingSave(false);
 		}

@@ -1,6 +1,6 @@
 import convertStringToDoc from '../../utils/convert-string-to-doc';
 
-const testSaveStr = `
+export const testSaveStr = `
   <savegame>
     <scheduleList>
       <schedule>
@@ -31,7 +31,7 @@ const testSaveStr = `
     </thing>
   </savegame>
 `;
-const testDefaultsStr1 = `
+export const testDefaultsStr1 = `
   <defaults>
     <schedule>
       <li>rep1</li>
@@ -42,7 +42,7 @@ const testDefaultsStr1 = `
       <li>rep5</li>
     </schedule>
   </defaults>`;
-const testDefaultsStr2 = `
+export const testDefaultsStr2 = `
   <defaults>
     <schedule>
       <li>rep1</li>
@@ -61,7 +61,7 @@ const testDefaultsStr2 = `
       <extra>thing</extra>
     </outfits>
   </defaults>`;
-const testResultStr1 = `
+export const testResultStr1 = `
   <savegame>
     <scheduleList>
       <schedule>
@@ -92,7 +92,7 @@ const testResultStr1 = `
       </outfits>
     </thing>
   </savegame>`;
-const testResultStr2 = `
+export const testResultStr2 = `
   <savegame>
     <scheduleList>
       <schedule>

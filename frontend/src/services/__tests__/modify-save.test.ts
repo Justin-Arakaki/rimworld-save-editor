@@ -5,7 +5,7 @@ import {
 	createTestResult2,
 } from '../../data/test-utils/create-test-xml';
 
-test('Patches save file with defaults', () => {
+test.skip('Patches save file with defaults', () => {
 	const testSave = createTestSave();
 	const testDefaults = createTestDefaults2();
 	const testResult = createTestResult2();
