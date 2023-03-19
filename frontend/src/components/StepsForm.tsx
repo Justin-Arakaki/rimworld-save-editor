@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import Stack from '@mui/material/Stack';
 import Step from './Step';
-import convertFileToDoc from '../utils/convert-file-to-doc';
+import convertFileToDoc from '../utils/converters/convert-file-to-doc';
 import modifySave from '../services/modify-save';
 import createRWSFile from '../utils/create-rws-file';
 export default function StepsForm() {
@@ -21,7 +21,6 @@ export default function StepsForm() {
 		setIsLoadingNewSave(true);
 		modifySave(saveDoc, defaultsDoc);
 		setNewSaveDoc(saveDoc);
-		createRWSFile(newSaveDoc);
 		setIsLoadingNewSave(false);
 	};
 

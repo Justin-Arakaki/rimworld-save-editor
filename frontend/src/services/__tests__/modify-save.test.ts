@@ -3,16 +3,17 @@ import {
 	createTestSave,
 	createTestDefaults2,
 	createTestResult2,
-} from '../../data/test-utils/create-test-xml';
+} from '../../data/test-utils/create-test-constants';
 
-test.skip('Patches save file with defaults', () => {
-	const testSave = createTestSave();
-	const testDefaults = createTestDefaults2();
-	const testResult = createTestResult2();
+test('patches save file with defaults', () => {
+	const save = createTestSave();
+	const defaults = createTestDefaults2();
+	const result = createTestResult2();
+	let theoryResult: Element, actualResult: Element;
 
-	modifySave(testSave, testDefaults);
-	const theoryResult = testResult.documentElement;
-	const actualResult = testSave.documentElement;
+	modifySave(save, defaults);
+	theoryResult = result.documentElement;
+	actualResult = save.documentElement;
 
 	expect(actualResult).toEqual(theoryResult);
 });

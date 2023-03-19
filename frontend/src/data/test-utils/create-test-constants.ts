@@ -1,4 +1,6 @@
-import convertStringToDoc from '../../utils/convert-string-to-doc';
+import convertStringToDoc from '../../utils/converters/convert-string-to-doc';
+
+const options = { noWhiteSpace: true };
 
 export const testSaveStr = `
   <savegame>
@@ -123,9 +125,18 @@ export const testResultStr2 = `
       </outfits>
     </thing>
   </savegame>`;
-
-export const createTestSave = () => convertStringToDoc(testSaveStr);
-export const createTestDefaults1 = () => convertStringToDoc(testDefaultsStr1);
-export const createTestResult1 = () => convertStringToDoc(testResultStr1);
-export const createTestDefaults2 = () => convertStringToDoc(testDefaultsStr2);
-export const createTestResult2 = () => convertStringToDoc(testResultStr2);
+export function createTestSave() {
+	return convertStringToDoc(testSaveStr, options);
+}
+export function createTestDefaults1() {
+	return convertStringToDoc(testDefaultsStr1, options);
+}
+export function createTestResult1() {
+	return convertStringToDoc(testResultStr1, options);
+}
+export function createTestDefaults2() {
+	return convertStringToDoc(testDefaultsStr2, options);
+}
+export function createTestResult2() {
+	return convertStringToDoc(testResultStr2, options);
+}

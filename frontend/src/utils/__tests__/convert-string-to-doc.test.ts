@@ -1,16 +1,13 @@
-import convertStringToDoc from '../convert-string-to-doc';
-import {
-	testDefaultsStr1,
-	testSaveStr,
-} from '../../data/test-utils/create-test-xml';
+import convertStringToDoc from '../converters/convert-string-to-doc';
+import { testSaveStr } from '../../data/test-utils/create-test-constants';
 
 test('string becomes type Document with same nodes', () => {
-	// const testDoc = convertStringToDoc(testSaveStr);
-	// const element = testDoc.body.firstChild;
-	const test = testSaveStr;
-	const parser = new DOMParser();
-	const doc1 = parser.parseFromString(testSaveStr, 'text/xml');
-	console.log(doc1.getElementsByTagName('savegame')[0].children);
-	expect(doc1.getRootNode().children[0].children).toBe('asdf');
-	// expect(element).toEqual('');
+	const doc = convertStringToDoc(testSaveStr);
+	const docElement = doc.documentElement;
+	const deeperNode = docElement.children[1].children[0].children[1];
+
+	expect(doc.constructor.name).toBe('Document');
+	expect(docElement.tagName).toBe('savegame');
+	expect(deeperNode.children[1].tagName).toBe('li');
+	expect(deeperNode.children[2].innerHTML).toBe('3');
 });

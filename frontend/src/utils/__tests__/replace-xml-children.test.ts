@@ -3,17 +3,19 @@ import {
 	createTestDefaults1,
 	createTestSave,
 	createTestResult1,
-} from '../../data/test-utils/create-test-xml';
+} from '../../data/test-utils/create-test-constants';
 
-test.skip('Replaces all elements with replacement element', () => {
-	const testSave = createTestSave();
-	const testDefaults = createTestDefaults1();
-	const testResult = createTestResult1();
-	const replacement = testDefaults.getElementsByTagName('schedule')[0];
+test('replaces all elements within a Document with replacement element', () => {
+	const save = createTestSave();
+	const defaults = createTestDefaults1();
+	const result = createTestResult1();
+	const replacement = defaults.getElementsByTagName('schedule')[0];
+	let theoryResult: Element, actualResult: Element;
 
-	replaceXMLChildren(testSave, replacement);
-	const theoryResult = testResult.documentElement;
-	const actualResult = testSave.documentElement;
+	replaceXMLChildren(save, replacement);
+	theoryResult = result.documentElement;
+	actualResult = save.documentElement;
 
+	expect(save.constructor.name).toBe('Document');
 	expect(actualResult).toEqual(theoryResult);
 });
