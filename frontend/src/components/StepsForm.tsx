@@ -14,15 +14,17 @@ export default function StepsForm() {
 	const [saveDoc, setSaveDoc] = useState<Document | null>(null);
 	const [defaultsDoc, setDefaultsDoc] = useState<Document | null>(null);
 
-	const handleFileDownload = function () {
+	async function handleFileDownload() {
 		console.log('here');
 		if (!saveDoc || !defaultsDoc) return;
 		console.log('thru');
 		setIsLoadingNewSave(true);
-		modifySave(saveDoc, defaultsDoc);
-		setNewSaveDoc(saveDoc);
+		await modifySave(saveDoc, defaultsDoc);
+		await setNewSaveDoc(saveDoc);
+		await createRWSFile(saveDoc);
+		console.log(newSaveDoc);
 		setIsLoadingNewSave(false);
-	};
+	}
 
 	const step1 = {
 		title: 'Step 1: Upload save file',
@@ -55,7 +57,7 @@ export default function StepsForm() {
 		async function setDoc() {
 			if (!saveFile) return;
 			setIsLoadingNewSave(true);
-			// react alskdfjlasjdklf
+			// TODO: react alskdfjlasjdklf
 			const doc = await convertFileToDoc(saveFile);
 			setSaveDoc(doc);
 			console.log('here' + typeof saveDoc);
@@ -63,10 +65,6 @@ export default function StepsForm() {
 				console.log('doc is ' + typeof saveDoc);
 				return;
 			}
-			const serializer = new XMLSerializer();
-			const root = doc.getRootNode();
-			const xmlString = serializer.serializeToString(root);
-			console.log(xmlString);
 			setIsLoadingSave(false);
 		}
 		setDoc();

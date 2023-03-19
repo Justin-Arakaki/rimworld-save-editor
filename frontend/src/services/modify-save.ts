@@ -1,9 +1,9 @@
 import replaceXMLChildren from '../utils/replace-xml-children';
 
-export default function modifySave(
+export default async function modifySave(
 	saveFile: XMLDocument,
 	defaults: XMLDocument
-): void {
+): Promise<void> {
 	const defaultEls = defaults.documentElement.children;
 
 	for (const el of defaultEls) {

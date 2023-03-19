@@ -31,32 +31,35 @@ export default function Step({
 	}
 	const buttonType =
 		buttonText !== 'Download' ? (
-			<FileButton
-				variant="contained"
-				component="label"
-				size="large"
-				disabled={isLoading}
-			>
-				{buttonUI}
-				<input
-					hidden
-					accept=".xml,.rws"
-					type="file"
-					onChange={e => {
-						if (!e.target.files || e.target.files.length === 0) return;
-						handleFileSelect(e.target.files[0]);
-						setFileDesc({ path: e.target.files[0].name });
-						onLoading(true);
-					}}
-				/>
-			</FileButton>
+			<Box>
+				<FileButton
+					variant="contained"
+					component="label"
+					size="large"
+					disabled={isLoading}
+				>
+					{buttonUI}
+					<input
+						hidden
+						accept=".xml,.rws"
+						type="file"
+						onChange={e => {
+							if (!e.target.files || e.target.files.length === 0) return;
+							handleFileSelect(e.target.files[0]);
+							setFileDesc({ path: e.target.files[0].name });
+							onLoading(true);
+						}}
+					/>
+				</FileButton>
+				<Typography>File: {fileDesc.path}</Typography>
+			</Box>
 		) : (
 			<FileButton
 				variant="contained"
 				component="label"
 				size="large"
 				disabled={isLoading}
-				onClick={onClick}
+				onClick={async () => await onClick()}
 			>
 				{buttonUI}
 			</FileButton>
@@ -75,7 +78,6 @@ export default function Step({
 				}}
 			>
 				{buttonType}
-				<Typography>File: {fileDesc.path}</Typography>
 			</Box>
 		</StepCard>
 	);
