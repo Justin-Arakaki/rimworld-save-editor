@@ -1,6 +1,6 @@
 import convertStringToDoc from '../../utils/converters/convert-string-to-doc';
 
-const options = { noWhiteSpace: true };
+const options = { noWhiteSpace: false };
 
 export const testSaveStr = `
   <savegame>

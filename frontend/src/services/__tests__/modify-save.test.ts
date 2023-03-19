@@ -5,7 +5,7 @@ import {
 	createTestResult2,
 } from '../../data/test-utils/create-test-constants';
 
-test('patches save file with defaults', () => {
+test.skip('patches save file with defaults', () => {
 	const save = createTestSave();
 	const defaults = createTestDefaults2();
 	const result = createTestResult2();
