@@ -4,9 +4,7 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "npm-run-all --silent --parallel dev:*",
-		"dev:client": "vite",
-		"dev:server": "nodemon",
+		"dev": "vite",
 		"test": "jest --watch",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
@@ -42,6 +40,7 @@
 		"@vitejs/plugin-react": "^2.1.0",
 		"babel-jest": "^29.5.0",
 		"eslint": "^8.24.0",
+		"gh-pages": "^6.0.0",
 		"husky": "^8.0.1",
 		"jest": "^29.4.3",
 		"jest-environment-jsdom": "^29.5.0",
